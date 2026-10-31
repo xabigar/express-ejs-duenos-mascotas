@@ -1,0 +1,35 @@
+<%- include('partials/header') %>
+
+<h2>Dueño: <%= owner.name %></h2>
+<p>Email: <%= owner.email %></p>
+
+<h3>Mascotas registradas</h3>
+
+<% if (ownerPets.length === 0) { %>
+    <p>Este dueño no tiene mascotas registradas.</p>
+<% } else { %>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Especie</th>
+        </tr>
+        <% ownerPets.forEach(pet => { %>
+            <tr>
+                <td><%= pet.id %></td>
+                <td><%= pet.name %></td>
+                <td><%= pet.species %></td>
+            </tr>
+        <% }) %>
+    </table>
+<% } %>
+
+<h3>Agregar nueva mascota</h3>
+<form action="/pets" method="POST">
+    <input type="text" name="name" placeholder="Nombre de mascota" required>
+    <input type="text" name="species" placeholder="Especie" required>
+    <input type="hidden" name="ownerId" value="<%= owner.id %>">
+    <button type="submit">Agregar</button>
+</form>
+
+<%- include('partials/footer') %>

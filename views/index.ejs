@@ -1,0 +1,15 @@
+<%- include('partials/header') %>
+
+<h2>Lista de Dueños</h2>
+
+<ul>
+    <% owners.forEach(o => { %>
+        <li>
+            <a href="/owner/<%= o.id %>"><%= o.name %></a> - <%= o.email %>
+        </li>
+    <% }) %>
+</ul>
+
+<p>Total de dueños: <%= owners.length %></p>
+
+<%- include('partials/footer') %>
